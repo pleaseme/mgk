@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${data}">
+</p>
+
+
+    <p th:each="a : ${all}">
+
+        <span th:text="${a.employerid}"></span>
+
+        <span th:text="${a.employername}"></span>
+
+        <span th:text="${a.departmentname}"></span>
+    </p>
+
+
+<div id="main" style="height:400px"></div>
+<!-- ECharts单文件引入 -->
+　<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    $.ajax(
+        {url:"http://localhost:8085/index",type:"get",
+        success:function(result){
+           alert(result);
+        }});
+
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main'));
+
+            var dates=[11,10,10,10];
+            var arrvalue;
+            var data1=["衣服","鞋子","电脑","手机","外套","袜子"];//动态
+
+            var option = {
+                tooltip: {
+                    show: true
+                },
+                legend: {
+                    data:['上海仓']
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        data: data1
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        "name":"库存",
+                        "type":"bar",
+                        "data":dates
+                    }
+                ]
+            };
+
+
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+        }
+    );
+</script>
+
+</body>
+</html>
