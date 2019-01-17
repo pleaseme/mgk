@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-public class CRM_Result {
+public class LBK_Result {
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -22,33 +22,33 @@ public class CRM_Result {
     // 响应中的数据
     private Object data;
 
-    public static CRM_Result build(Integer status, String msg, Object data) {
-        return new CRM_Result(status, msg, data);
+    public static LBK_Result build(Integer status, String msg, Object data) {
+        return new LBK_Result(status, msg, data);
     }
 
-    public static CRM_Result ok(Object data) {
-        return new CRM_Result(data);
+    public static LBK_Result ok(Object data) {
+        return new LBK_Result(data);
     }
 
-    public static CRM_Result ok() {
-        return new CRM_Result(null);
+    public static LBK_Result ok() {
+        return new LBK_Result(null);
     }
 
-    public CRM_Result() {
+    public LBK_Result() {
 
     }
 
-    public static CRM_Result build(Integer status, String msg) {
-        return new CRM_Result(status, msg, null);
+    public static LBK_Result build(Integer status, String msg) {
+        return new LBK_Result(status, msg, null);
     }
 
-    public CRM_Result(Integer status, String msg, Object data) {
+    public LBK_Result(Integer status, String msg, Object data) {
         this.code = status;
         this.msg = msg;
         this.data = data;
     }
 
-    public CRM_Result(Object data) {
+    public LBK_Result(Object data) {
         this.code = 200;
         this.msg = "OK";
         this.data = data;
@@ -89,10 +89,10 @@ public class CRM_Result {
      * @param clazz    TaotaoResult中的object类型
      * @return
      */
-    public static CRM_Result formatToPojo(String jsonData, Class<?> clazz) {
+    public static LBK_Result formatToPojo(String jsonData, Class<?> clazz) {
         try {
             if (clazz == null) {
-                return MAPPER.readValue(jsonData, CRM_Result.class);
+                return MAPPER.readValue(jsonData, LBK_Result.class);
             }
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");
@@ -116,9 +116,9 @@ public class CRM_Result {
      * @param json
      * @return
      */
-    public static CRM_Result format(String json) {
+    public static LBK_Result format(String json) {
         try {
-            return MAPPER.readValue(json, CRM_Result.class);
+            return MAPPER.readValue(json, LBK_Result.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,7 +132,7 @@ public class CRM_Result {
      * @param clazz    集合中的类型
      * @return
      */
-    public static CRM_Result formatToList(String jsonData, Class<?> clazz) {
+    public static LBK_Result formatToList(String jsonData, Class<?> clazz) {
         try {
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");

@@ -1,5 +1,6 @@
 package com.example.jpademo;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class
 JpaDemoApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         SpringApplication.run(JpaDemoApplication.class, args);
     }
 }

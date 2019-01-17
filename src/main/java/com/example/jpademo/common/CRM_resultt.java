@@ -13,22 +13,25 @@ public class CRM_resultt {
 
     private Integer count;
 
+    private Integer totolpage;
+
     // 响应消息
     private String msg;
 
     // 响应中的数据
     private Object data;
 
-    CRM_resultt(Integer code, String msg,Integer count,Object data){
+    CRM_resultt(Integer code, String msg,Integer count,Integer totolpage,Object data){
         this.code =code;
         this.msg = msg;
         this.count=count;
         this.data = data;
+        this.totolpage=totolpage;
     }
 
 
-    public static CRM_resultt build(Integer code, String msg,Integer count,Object data) {
-        return new CRM_resultt(code,msg,count,data);
+    public static CRM_resultt build(Integer code, String msg,Integer count,Integer totolpage,Object data) {
+        return new CRM_resultt(code,msg,count,totolpage,data);
     }
 
     public static CRM_resultt ok(Object data) {
@@ -94,5 +97,11 @@ public class CRM_resultt {
         return count;
     }
 
+    public Integer getTotolpage() {
+        return totolpage;
+    }
 
+    public void setTotolpage(Integer totolpage) {
+        this.totolpage = totolpage;
+    }
 }
