@@ -142,7 +142,7 @@ public class WeixinController extends WeixinSupport {
             //获取本机的ip地址
             String spbill_create_ip = IpUtils.getIpAddr(request);
 
-            String orderNo = "123435122788";
+            String orderNo = "123435122";
             String money = "1";//支付金额，单位：分，这边需要转成字符串类型，否则后面的签名会失败
 
             Map<String, String> packageParams = new HashMap<>();
